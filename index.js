@@ -3,11 +3,13 @@ const app = express();
 require('dotenv').config();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const { body, validationResult } = require('express-validator');
 const Url = require('./models/Url');
 const { randomString } = require('./utils/random');
 const port = 3000;
 
+app.use(cors());
 app.use(bodyParser.json());
 
 try {

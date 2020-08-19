@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from './Components/Home';
+import ShortURL from './Components/ShortURL';
 
 function App() {
   return (
@@ -11,21 +13,5 @@ function App() {
     </Router>
   );
 }
-
-const Home = () => {
-  return (
-    <Fragment>
-      <h1>This is home</h1>
-    </Fragment>
-  );
-};
-
-const ShortURL = () => {
-  return (
-    <Fragment>
-      <h1>This is ShortURL</h1>
-    </Fragment>
-  );
-};
 
 export default App;

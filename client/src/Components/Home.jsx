@@ -1,7 +1,8 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, Link } from 'react';
 import axios from 'axios';
 const Home = () => {
   const [url, setUrl] = useState('');
+  const [shortUrl, setShortUrl] = useState('');
 
   const submitUrl = async () => {
     const options = {
@@ -17,18 +18,10 @@ const Home = () => {
     try {
       const sendUrl = await axios(options);
       console.log(sendUrl);
+      setShortUrl(sendUrl.data);
     } catch (error) {
       console.error(error);
     }
-
-    // try {
-    //   const response = await axios.get(
-    //     'https://jsonplaceholder.typicode.com/posts/1'
-    //   );
-    //   console.log(response.data);
-    // } catch (error) {
-    //   console.error(error);
-    // }
   };
 
   return (
@@ -40,6 +33,7 @@ const Home = () => {
         onChange={(e) => setUrl(e.target.value)}
       />
       <button onClick={submitUrl}>Submit</button>
+      <a href={shortUrl}>{shortUrl}</a>
     </Fragment>
   );
 };

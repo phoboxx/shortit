@@ -9,8 +9,9 @@ const Url = require('./models/Url');
 const { randomString } = require('./utils/random');
 const port = 3000;
 
-app.use(cors());
 app.use(bodyParser.json());
+
+app.use(cors());
 
 try {
   mongoose.connect(process.env.MONGO_URI, {
@@ -24,30 +25,37 @@ try {
 
 //Desc: GET ROUTE
 // Route: /api/shortit
-app.get('/api/shortit', [body('shortURL').isURL()], async (req, res) => {
-  // Check if it's a valid URL
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({
-      errors: errors.array(),
-    });
-  }
+// TODO: Check if it's an URL
+app.get(
+  '/api/shortit/:shortURL',
+  [body('shortURL').isURL()],
+  async (req, res) => {
+    // Check if it's a valid URL
 
-  // Get the random string end of the URL
-  const randomString = req.body.shortURL.split('/').pop();
+    // const errors = validationResult(req);
+    // if (!errors.isEmpty()) {
+    //   return res.status(400).json({
+    //     errors: errors.array(),
+    //   });
+    // }
 
-  // Try to find the URL
-  try {
-    const url = await Url.findOne({
-      shortURL: randomString,
-    });
-    res.redirect(url.baseURL);
-  } catch (error) {
-    return res.status(404).json({
-      error: 'not found',
-    });
+    // Get the random string end of the URL
+    const randomString = req.params.shortURL.split('/').pop();
+
+    // Try to find the URL
+    try {
+      const url = await Url.findOne({
+        shortURL: randomString,
+      });
+
+      return res.send(url.baseURL);
+    } catch (error) {
+      return res.status(404).json({
+        error: 'not found',
+      });
+    }
   }
-});
+);
 
 // Desc: POST ROUTE
 // Route: /api/shortit

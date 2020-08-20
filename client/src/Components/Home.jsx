@@ -1,13 +1,14 @@
 import React, { Fragment, useState, Link } from 'react';
 import axios from 'axios';
-const Home = () => {
+
+const Home = (props) => {
   const [url, setUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
 
   const submitUrl = async () => {
     const options = {
       method: 'post',
-      url: 'http://127.0.0.1:3000/api/shortit',
+      url: props.api,
       headers: {
         'Content-Type': 'application/json',
       },

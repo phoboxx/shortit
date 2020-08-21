@@ -4,7 +4,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { body, validationResult } = require('express-validator');
+const { body, param, validationResult } = require('express-validator');
 const Url = require('./models/Url');
 const { randomString } = require('./utils/random');
 const port = 3000;
@@ -23,21 +23,25 @@ try {
   console.error(error);
 }
 
-//Desc: GET ROUTE
+// Desc: GET ROUTE
 // Route: /api/shortit
-// TODO: Check if it's an URL
 app.get(
   '/api/shortit/:shortURL',
-  [body('shortURL').isURL()],
+  [
+    param('shortURL').isAlphanumeric(),
+    param('shortURL').isLength({
+      min: process.env.RANDOM_CHAR,
+      max: process.env.RANDOM_CHAR,
+    }),
+  ],
   async (req, res) => {
-    // Check if it's a valid URL
-
-    // const errors = validationResult(req);
-    // if (!errors.isEmpty()) {
-    //   return res.status(400).json({
-    //     errors: errors.array(),
-    //   });
-    // }
+    // Check if the provided value is correct
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array(),
+      });
+    }
 
     // Get the random string end of the URL
     const randomString = req.params.shortURL.split('/').pop();

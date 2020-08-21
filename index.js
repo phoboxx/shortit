@@ -63,49 +63,65 @@ app.get(
 
 // Desc: POST ROUTE
 // Route: /api/shortit
-app.post('/api/shortit', [body('baseURL').isURL()], async (req, res) => {
-  // Check if it's a valid URL
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({
-      errors: errors.array(),
-    });
-  }
+app.post(
+  '/api/shortit',
+  [
+    body('baseURL')
+      .isURL()
+      .custom((value) => {
+        // Check wether or not the URL is http or https
+        const urlSplit = value.split(':');
+        if (urlSplit[0] !== 'https' && urlSplit[0] !== 'http') {
+          throw new Error('The URL needs to start by either http or https');
+        }
 
-  // Check if randomString already exists in the database
-  // while shortURL finds and entry in the database it keeps generating a new one
-  let urlString = '';
-  let shortURL = '';
-  do {
+        return true;
+      }),
+  ],
+  async (req, res) => {
+    // Check if it's a valid URL
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array(),
+      });
+    }
+
+    // Check if randomString already exists in the database
+    // while shortURL finds and entry in the database it keeps generating a new one
+    let urlString = '';
+    let shortURL = '';
+    do {
+      try {
+        // Generate a random string for the url
+        urlString = randomString(process.env.RANDOM_CHAR);
+
+        shortURL = await Url.findOne({
+          shortURL: urlString,
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    } while (shortURL);
+
+    // Insert to DB
     try {
-      // Generate a random string for the url
-      urlString = randomString(process.env.RANDOM_CHAR);
-
-      shortURL = await Url.findOne({
+      const url = new Url({
+        baseURL: req.body.baseURL,
         shortURL: urlString,
       });
+
+      await url.save();
+
+      return res.send(process.env.SHORTENER_PATH + url.shortURL);
     } catch (error) {
+      res.status(400).json({
+        error: error,
+      });
       console.error(error);
     }
-  } while (shortURL);
-
-  // Insert to DB
-  try {
-    const url = new Url({
-      baseURL: req.body.baseURL,
-      shortURL: urlString,
-    });
-
-    await url.save();
-
-    return res.send(process.env.SHORTENER_PATH + url.shortURL);
-  } catch (error) {
-    res.status(400).json({
-      error: error,
-    });
-    console.error(error);
   }
-});
+);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://127.0.0.1:${port}`);

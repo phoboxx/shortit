@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './Components/Home';
-import Test from './test';
 import ShortURL from './Components/ShortURL';
 
 function App() {
@@ -9,7 +8,6 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path='/test' exact component={Test} />
         <Route path='/' exact children={<Home api={API_URL} />} />
         <Route path='/' children={<ShortURL api={API_URL} />} />
       </Switch>

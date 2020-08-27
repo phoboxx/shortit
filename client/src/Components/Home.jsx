@@ -7,7 +7,7 @@ import { set } from 'mongoose';
 const Home = (props) => {
   const [url, setUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
-  const [alert, setAlert] = useState('');
+  const [alert, setAlert] = useState({});
 
   const submitUrl = async () => {
     const options = {
@@ -24,9 +24,10 @@ const Home = (props) => {
       const sendUrl = await axios(options);
       console.log(sendUrl);
       setShortUrl(sendUrl.data);
+      setAlert({});
     } catch (error) {
       console.error(error.response.data.errors[0].msg);
-      setAlert(error.response.data.errors[0].msg);
+      setAlert({ variant: 'danger', msg: error.response.data.errors[0].msg });
     }
   };
   return (
@@ -45,7 +46,7 @@ const Home = (props) => {
       </Helmet>
       <div class='s003'>
         <h1>Shortit</h1>
-        {alert ? <Alert>{alert}</Alert> : ''}
+        {alert ? <Alert variant={alert.variant}>{alert.msg}</Alert> : ''}
         <form>
           <div class='inner-form'>
             <div class='input-field second-wrap'>

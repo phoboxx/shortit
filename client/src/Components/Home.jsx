@@ -2,10 +2,12 @@ import React, { Fragment, useState } from 'react';
 import Helmet from 'react-helmet';
 import axios from 'axios';
 import { Alert } from 'react-bootstrap';
+import { set } from 'mongoose';
 
 const Home = (props) => {
   const [url, setUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
+  const [alert, setAlert] = useState('');
 
   const submitUrl = async () => {
     const options = {
@@ -23,7 +25,8 @@ const Home = (props) => {
       console.log(sendUrl);
       setShortUrl(sendUrl.data);
     } catch (error) {
-      console.error(error);
+      console.error(error.response.data.errors[0].msg);
+      setAlert(error.response.data.errors[0].msg);
     }
   };
   return (
@@ -42,7 +45,7 @@ const Home = (props) => {
       </Helmet>
       <div class='s003'>
         <h1>Shortit</h1>
-        <Alert variant='danger'>test</Alert>
+        {alert ? <Alert>{alert}</Alert> : ''}
         <form>
           <div class='inner-form'>
             <div class='input-field second-wrap'>

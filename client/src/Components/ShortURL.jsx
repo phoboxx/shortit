@@ -20,7 +20,7 @@ const ShortURL = (props) => {
   redirect();
   return (
     <Fragment>
-      <h1>This is ShortURL</h1>
+      <h1>You are getting redirected...</h1>
     </Fragment>
   );
 };

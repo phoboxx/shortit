@@ -822,7 +822,6 @@ legend {
 .s003 {
   min-height: 100vh;
   display: -ms-flexbox;
-  display: flex;
   -ms-flex-pack: center;
   justify-content: center;
   -ms-flex-align: center;
@@ -832,6 +831,8 @@ legend {
   background-size: cover;
   background-position: center center;
   padding: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 .s003 form {
@@ -1085,4 +1086,16 @@ legend {
 
 .btn-search i {
   font-size: 1.5rem;
+}
+
+.title {
+  text-align: center;
+  font-size: 5vh;
+}
+.alert {
+  text-align: center;
+}
+.link {
+  margin: 30px 0 0 0;
+  text-align: center;
 }

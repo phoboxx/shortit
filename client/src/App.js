@@ -4,7 +4,7 @@ import Home from './Components/Home';
 import ShortURL from './Components/ShortURL';
 
 function App() {
-  const API_URL = 'http://127.0.0.1:3000/api/shortit';
+  const API_URL = 'https://whispering-stream-38732.herokuapp.com/api/shortit';
   return (
     <Router>
       <Switch>

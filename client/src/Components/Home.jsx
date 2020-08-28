@@ -29,6 +29,13 @@ const Home = (props) => {
       setAlert({ variant: 'danger', msg: error.response.data.errors[0].msg });
     }
   };
+
+  const enterKeyPressed = (e) => {
+    if (e.key === 'Enter') {
+      submitUrl();
+    }
+  };
+
   return (
     <Fragment>
       <Helmet>
@@ -54,7 +61,7 @@ const Home = (props) => {
           ''
         )}
 
-        <form>
+        <div class='form'>
           <div class='input inner-form '>
             <div class='input-field second-wrap'>
               <input
@@ -64,15 +71,21 @@ const Home = (props) => {
                 value={url}
                 placeholder='Enter URL here.'
                 onChange={(e) => setUrl(e.target.value)}
+                onKeyPress={(e) => enterKeyPressed(e)}
               />
             </div>
             <div class='input-field third-wrap'>
-              <button class='btn-search' onClick={submitUrl} type='button'>
+              <button
+                id='btn-search'
+                class='btn-search'
+                onClick={submitUrl}
+                type='button'
+              >
                 <i class='fas fa-arrow-right'></i>
               </button>
             </div>
           </div>
-        </form>
+        </div>
         <a className='link' href={shortUrl}>
           {shortUrl}
         </a>

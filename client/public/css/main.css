@@ -835,13 +835,13 @@ legend {
   flex-direction: column;
 }
 
-.s003 form {
+.s003 .form {
   width: 100%;
   max-width: 790px;
   margin-bottom: 0;
 }
 
-.s003 form .inner-form {
+.s003 .form .inner-form {
   background: #fff;
   display: -ms-flexbox;
   display: flex;
@@ -854,11 +854,11 @@ legend {
   border-radius: 3px;
 }
 
-.s003 form .inner-form .input-field {
+.s003 .form .inner-form .input-field {
   height: 68px;
 }
 
-.s003 form .inner-form .input-field input {
+.s003 .form .inner-form .input-field input {
   height: 100%;
   background: transparent;
   border: 0;
@@ -869,34 +869,34 @@ legend {
   color: #555;
 }
 
-.s003 form .inner-form .input-field input.placeholder {
+.s003 .form .inner-form .input-field input.placeholder {
   color: #888;
   font-size: 16px;
 }
 
-.s003 form .inner-form .input-field input:-moz-placeholder {
+.s003 .form .inner-form .input-field input:-moz-placeholder {
   color: #888;
   font-size: 16px;
 }
 
-.s003 form .inner-form .input-field input::-webkit-input-placeholder {
+.s003 .form .inner-form .input-field input::-webkit-input-placeholder {
   color: #888;
   font-size: 16px;
 }
 
-.s003 form .inner-form .input-field input:hover,
-.s003 form .inner-form .input-field input:focus {
+.s003 .form .inner-form .input-field input:hover,
+.s003 .form .inner-form .input-field input:focus {
   box-shadow: none;
   outline: 0;
   border-color: #fff;
 }
 
-.s003 form .inner-form .input-field.first-wrap {
+.s003 .form .inner-form .input-field.first-wrap {
   width: 200px;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.s003 form .inner-form .input-field.first-wrap .choices__inner {
+.s003 .form .inner-form .input-field.first-wrap .choices__inner {
   background: transparent;
   border-radius: 0;
   border: 0;
@@ -910,7 +910,7 @@ legend {
 }
 
 .s003
-  form
+  .form
   .inner-form
   .input-field.first-wrap
   .choices__inner
@@ -924,7 +924,7 @@ legend {
 }
 
 .s003
-  form
+  .form
   .inner-form
   .input-field.first-wrap
   .choices__inner
@@ -939,7 +939,7 @@ legend {
 }
 
 .s003
-  form
+  .form
   .inner-form
   .input-field.first-wrap
   .choices__inner
@@ -954,7 +954,7 @@ legend {
 }
 
 .s003
-  form
+  .form
   .inner-form
   .input-field.first-wrap
   .choices[data-type*='select-one']:after {
@@ -963,7 +963,7 @@ legend {
 }
 
 .s003
-  form
+  .form
   .inner-form
   .input-field.first-wrap
   .choices__list.choices__list--dropdown {
@@ -976,7 +976,7 @@ legend {
 }
 
 .s003
-  form
+  .form
   .inner-form
   .input-field.first-wrap
   .choices__list.choices__list--dropdown
@@ -985,7 +985,7 @@ legend {
 }
 
 .s003
-  form
+  .form
   .inner-form
   .input-field.first-wrap
   .choices__list--dropdown
@@ -995,7 +995,7 @@ legend {
 }
 
 .s003
-  form
+  .form
   .inner-form
   .input-field.first-wrap
   .choices__list--dropdown
@@ -1004,16 +1004,16 @@ legend {
   min-height: 24px;
 }
 
-.s003 form .inner-form .input-field.second-wrap {
+.s003 .form .inner-form .input-field.second-wrap {
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.s003 form .inner-form .input-field.third-wrap {
+.s003 .form .inner-form .input-field.third-wrap {
   width: 74px;
 }
 
-.s003 form .inner-form .input-field.third-wrap .btn-search {
+.s003 .form .inner-form .input-field.third-wrap .btn-search {
   height: 100%;
   width: 100%;
   white-space: nowrap;
@@ -1024,61 +1024,61 @@ legend {
   transition: all 0.2s ease-out, color 0.2s ease-out;
 }
 
-.s003 form .inner-form .input-field.third-wrap .btn-search svg {
+.s003 .form .inner-form .input-field.third-wrap .btn-search svg {
   width: 16px;
 }
 
-.s003 form .inner-form .input-field.third-wrap .btn-search:hover {
+.s003 .form .inner-form .input-field.third-wrap .btn-search:hover {
   background: #5eaaa8;
 }
 
-.s003 form .inner-form .input-field.third-wrap .btn-search:focus {
+.s003 .form .inner-form .input-field.third-wrap .btn-search:focus {
   outline: 0;
   box-shadow: none;
 }
 
 @media screen and (max-width: 992px) {
-  .s003 form .inner-form .input-field {
+  .s003 .form .inner-form .input-field {
     height: 50px;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .s003 form .inner-form {
+  .s003 .form .inner-form {
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     padding: 20px;
   }
-  .s003 form .inner-form .input-field {
+  .s003 .form .inner-form .input-field {
     margin-bottom: 20px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
-  .s003 form .inner-form .input-field input {
+  .s003 .form .inner-form .input-field input {
     padding: 10px 15px;
   }
-  .s003 form .inner-form .input-field.first-wrap {
+  .s003 .form .inner-form .input-field.first-wrap {
     width: 100%;
     border-right: 0;
   }
-  .s003 form .inner-form .input-field.first-wrap .choices__inner {
+  .s003 .form .inner-form .input-field.first-wrap .choices__inner {
     padding: 10px 15px;
   }
   .s003
-    form
+    .form
     .inner-form
     .input-field.first-wrap
     .choices[data-type*='select-one']:after {
     right: 11.5px;
     border-color: #e5e5e5 transparent transparent transparent;
   }
-  .s003 form .inner-form .input-field.second-wrap {
+  .s003 .form .inner-form .input-field.second-wrap {
     width: 100%;
     margin-bottom: 30px;
   }
-  .s003 form .inner-form .input-field.second-wrap input {
+  .s003 .form .inner-form .input-field.second-wrap input {
     border: 1px solid rgba(255, 255, 255, 0.3);
   }
-  .s003 form .inner-form .input-field.third-wrap {
+  .s003 .form .inner-form .input-field.third-wrap {
     margin-bottom: 0;
     width: 100%;
   }
